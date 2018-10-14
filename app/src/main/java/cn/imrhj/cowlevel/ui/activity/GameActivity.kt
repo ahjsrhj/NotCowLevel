@@ -53,7 +53,7 @@ class GameActivity : BaseActivity() {
     }
 
     private var mUrlSlug = ""
-    private var mTitle = ""
+    private var mTitle =
     private var mCover = ""
     private val mAdapter by lazy { GameAdapter() }
 

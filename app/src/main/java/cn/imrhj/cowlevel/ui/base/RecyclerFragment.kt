@@ -32,6 +32,9 @@ abstract class RecyclerFragment<T> : LazyLoadFragment() {
     private var mRefresh: SwipeRefreshLayout? = null
     private var mAdapter: BaseQuickAdapter<T, BaseViewHolder>? = null
 
+    open var mOnComplete: () -> Unit = { this.onComplete() }
+    open var mOnError: (t: Throwable) -> Unit = { this.onError(it) }
+
     /**
      * 是否还有更多数据
      */

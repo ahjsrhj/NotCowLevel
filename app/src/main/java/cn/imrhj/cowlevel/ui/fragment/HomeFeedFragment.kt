@@ -68,28 +68,27 @@ class HomeFeedFragment : RecyclerFragment<BaseModel>() {
                         RetrofitManager.getInstance().feedTimeline(nextCursor)
                     })
                     .bindLifecycleOnMainThread(this)
-                    .subscribe {
-
-                        if (it is FeedApiModel) {
-                            this.onLoadEnd(it, isResetData)
-                        } else if (it is FeedHomeModel) {
+                    .subscribe({ item ->
+                        if (item is FeedApiModel) {
+                            this.onLoadEnd(item, isResetData)
+                        } else if (item is FeedHomeModel) {
                             val list: MutableList<BaseModel> = ArrayList()
-                            if (it.banners?.list?.size ?: 0 > 0) {
-                                list.add(it.banners!!)
+                            if (item.banners?.list?.size ?: 0 > 0) {
+                                list.add(item.banners!!)
                             }
-                            if (it.followedPostNews?.list?.size ?: 0 > 0) {
-                                list.add(it.followedPostNews!!)
+                            if (item.followedPostNews?.list?.size ?: 0 > 0) {
+                                list.add(item.followedPostNews!!)
                             }
-                            if (it.followedTagNews?.list?.size ?: 0 > 0) {
-                                list.add(it.followedTagNews!!)
+                            if (item.followedTagNews?.list?.size ?: 0 > 0) {
+                                list.add(item.followedTagNews!!)
                             }
-                            list.addAll(it.feedData?.list?.filter { it.action != system_recommend_user.name }!!)
-                            mFirstId = it.feedData?.first_id ?: mFirstId
+                            list.addAll(item.feedData?.list?.filter { it.action != system_recommend_user.name }!!)
+                            mFirstId = item.feedData?.first_id ?: mFirstId
                             updateList(list, isResetData)
-                            setHasMore(it.feedData?.has_more == 1)
-                            setNextCursor(it.feedData?.last_id!!)
+                            setHasMore(item.feedData?.has_more == 1)
+                            setNextCursor(item.feedData?.last_id!!)
                         }
-                    }
+                    }, mOnError, mOnComplete)
         } else {
             RetrofitManager.getInstance().feedTimeline(nextCursor)
                     .bindLifecycleOnMainThread(this)

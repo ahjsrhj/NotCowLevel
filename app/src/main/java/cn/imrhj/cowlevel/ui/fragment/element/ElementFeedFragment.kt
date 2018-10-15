@@ -143,7 +143,7 @@ class ElementFeedFragment : RecyclerFragment<BaseModel>() {
     override fun loadServer(isResetData: Boolean, nextCursor: Int) {
         RetrofitManager.getInstance().elementFeed(mId, nextCursor)
                 .bindLifecycleOnMainThread(this)
-                .subscribe {
+                .subscribe({
                     if (isResetData && mRelatedModel != null) {
                         val list = ArrayList<BaseModel>((it.list?.size ?: 0) + 1)
                         list.add(mRelatedModel!!)
@@ -156,7 +156,7 @@ class ElementFeedFragment : RecyclerFragment<BaseModel>() {
                     }
                     setHasMore(it.has_more == 1)
                     setNextCursor(nextCursor + 1)
-                }
+                }, mOnError, mOnComplete)
     }
 
 }

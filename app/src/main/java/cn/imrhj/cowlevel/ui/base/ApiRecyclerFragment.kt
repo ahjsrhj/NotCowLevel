@@ -19,7 +19,7 @@ abstract class ApiRecyclerFragment<T, S> : RecyclerFragment<T>() {
         getApiObservable(nextCursor)
                 .observeOn(AndroidSchedulers.mainThread())
                 .bindLifecycle(this)
-                .subscribe { this.onNext(it, isResetData, nextCursor) }
+                .subscribe({ this.onNext(it, isResetData, nextCursor) }, mOnError, mOnComplete)
     }
 
     override fun getAdapter(): BaseQuickAdapter<T, BaseViewHolder> {

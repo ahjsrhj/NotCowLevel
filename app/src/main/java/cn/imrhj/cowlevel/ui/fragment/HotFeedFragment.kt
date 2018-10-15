@@ -20,10 +20,10 @@ class HotFeedFragment : RecyclerFragment<BaseModel>() {
     override fun loadServer(isResetData: Boolean, nextCursor: Int) {
         RetrofitManager.getInstance().hotFeeds(nextCursor)
                 .bindLifecycleOnMainThread(this)
-                .subscribe {
+                .subscribe({
                     updateList(it.list, isResetData)
                     setHasMore(it.has_more == 1)
                     setNextCursor(nextCursor + 1)
-                }
+                }, mOnError, mOnComplete)
     }
 }

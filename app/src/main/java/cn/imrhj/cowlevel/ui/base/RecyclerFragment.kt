@@ -204,7 +204,7 @@ abstract class RecyclerFragment<T> : LazyLoadFragment() {
         mRecycler?.smoothScrollToPosition(0)
     }
 
-    override fun onComplete() {
+    fun onComplete() {
         XLog.d(Thread.currentThread().name, "class = RecyclerFragment rhjlog onComplete: ")
         if (mRefresh?.isRefreshing == true) {
             mRefresh?.isRefreshing = false
@@ -221,7 +221,7 @@ abstract class RecyclerFragment<T> : LazyLoadFragment() {
 
     }
 
-    override fun onError(e: Throwable) {
+    fun onError(e: Throwable) {
         XLog.b().t().e("class = RecyclerFragment rhjlog onError: $e")
         if (mRefresh?.isRefreshing == true) {
             mRefresh?.isRefreshing = false
@@ -232,9 +232,5 @@ abstract class RecyclerFragment<T> : LazyLoadFragment() {
             mIsShowNext = false
         }
 
-    }
-
-    override fun shouldCallOnDestroy(): Boolean {
-        return true
     }
 }

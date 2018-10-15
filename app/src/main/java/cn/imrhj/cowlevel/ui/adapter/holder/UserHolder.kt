@@ -34,6 +34,7 @@ class UserHolder {
 
     }
 
+    @Suppress("DEPRECATION")
     private fun setOrHideText(view: TextView, text: String?) {
         if (StringUtils.isBlank(text)) {
             view.visibility = View.GONE

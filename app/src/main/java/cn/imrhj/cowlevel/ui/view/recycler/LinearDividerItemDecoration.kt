@@ -93,7 +93,7 @@ class LinearDividerItemDecoration(context: Context, orientation: Int, @DrawableR
                 val child = parent.getChildAt(i)
                 parent.getDecoratedBoundsWithMargins(child, mBounds)
                 val bottom = mBounds.bottom + Math.round(child.translationY)
-                val top = bottom - (mDivider.intrinsicHeight ?: 0)
+                val top = bottom - mDivider.intrinsicHeight
                 mDivider.setBounds(left, top, right, bottom)
                 mDivider.draw(canvas)
             }

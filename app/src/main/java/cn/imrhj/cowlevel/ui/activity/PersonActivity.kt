@@ -223,6 +223,7 @@ class PersonActivity : BaseActivity() {
 
         }
 
+        @Suppress("NON_EXHAUSTIVE_WHEN")
         override fun convert(helper: BaseViewHolder?, item: BaseModel?) {
             if (helper != null) {
                 when (ItemTypeEnum.valueOf(helper.itemViewType)) {

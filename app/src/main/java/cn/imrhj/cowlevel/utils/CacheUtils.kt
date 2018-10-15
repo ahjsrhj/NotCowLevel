@@ -4,10 +4,8 @@ import cn.imrhj.cowlevel.App
 import java.io.File
 
 object CacheUtils {
-
-
-    val externalCacheDir = App.app.externalCacheDir
-    val externalCacheDirPath = externalCacheDir.absolutePath
+    private val externalCacheDir = App.app.externalCacheDir
+    private val externalCacheDirPath = externalCacheDir?.absolutePath
     val logFilePath = externalCacheDirPath + File.separator + "log"
     fun getLogFileDir(): File {
         val file = File(externalCacheDir, "log")

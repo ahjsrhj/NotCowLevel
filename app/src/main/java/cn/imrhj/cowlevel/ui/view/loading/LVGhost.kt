@@ -152,7 +152,7 @@ class LVGhost : LVBase {
 
         rectFGhost.left = mPadding + distance
         rectFGhost.right = (mWidth - 2 * mPadding) / 3 + distance
-        var moveY = 0f
+        val moveY: Float
         val moveYMax = mHight / 4f / 2f
         val shadowHighMax = 5f
         var shadowHigh = 0f

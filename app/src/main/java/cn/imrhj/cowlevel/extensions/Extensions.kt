@@ -57,6 +57,7 @@ fun Fragment.getColor(@ColorRes id: Int): Int {
     return ContextCompat.getColor(context ?: App.app, id)
 }
 
+@Suppress("DEPRECATION")
 fun String.parseHtml(): Spanned {
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
         Html.fromHtml(this, 0) else

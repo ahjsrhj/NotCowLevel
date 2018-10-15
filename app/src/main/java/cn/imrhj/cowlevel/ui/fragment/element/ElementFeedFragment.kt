@@ -128,9 +128,9 @@ class ElementFeedFragment : RecyclerFragment<BaseModel>() {
         mDialog.setContentView(content)
         mDialog.setCancelable(true)
         mDialog.setCanceledOnTouchOutside(true)
-        val parent = mDialog.window.findViewById<ViewGroup>(android.support.design.R.id.design_bottom_sheet)
-        parent.layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT
-        parent.setBackgroundColor(getColor(R.color.colorPrimaryDark))
+        val parent = mDialog.window?.findViewById<ViewGroup>(android.support.design.R.id.design_bottom_sheet)
+        parent?.layoutParams?.height = ViewGroup.LayoutParams.MATCH_PARENT
+        parent?.setBackgroundColor(getColor(R.color.colorPrimaryDark))
 
         val behavior = BottomSheetBehavior.from(parent)
         behavior.peekHeight = ScreenSizeUtil.getScreenHeight()

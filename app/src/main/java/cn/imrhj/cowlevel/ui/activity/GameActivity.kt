@@ -100,6 +100,22 @@ class GameActivity : BaseActivity() {
                 .bindLifecycleOnMainThread(this)
                 .subscribe({
                     initTopView(it.game?.cover, it.game?.chineseTitle)
+                    if (it.game != null) {
+                        mAdapter.addData(it.game!!)
+                    }
+                    if (it.imageList != null) {
+                        mAdapter.addData(it.imageList!!)
+                    }
+                    if (it.game?.urls?.size ?: 0 > 0) {
+                        val urlModel = UrlListModel(it.game?.urls!!)
+                        if (it.game?.gamePrices?.size ?: 0 > 0) {
+                            urlModel.list = urlModel.list.map { url ->
+                                url?.data = it?.game?.gamePrices?.find { it?.tag == url?.id }?.data
+                                return@map url
+                            }
+                        }
+                        mAdapter.addData(urlModel)
+                    }
                 }, {
                     XLog.b().st(3).e("GameActivity getGameInfo:$it")
 

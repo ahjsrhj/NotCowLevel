@@ -5,9 +5,12 @@
     android:layout_height="wrap_content"
     android:background="@color/colorPrimary"
     android:elevation="5dp"
-    android:orientation="vertical"
-    android:padding="12dp">
+    android:orientation="vertical">
 
-    <include layout="@layout/layout_title_common" />
+    <include
+        layout="@layout/layout_title_common"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp" />
 
 </LinearLayout>

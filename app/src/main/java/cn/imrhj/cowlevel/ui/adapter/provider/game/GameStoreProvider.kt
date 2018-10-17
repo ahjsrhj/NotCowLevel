@@ -8,6 +8,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import cn.imrhj.cowlevel.R
 import cn.imrhj.cowlevel.consts.ItemTypeEnum
+import cn.imrhj.cowlevel.manager.SchemeUtils
 import cn.imrhj.cowlevel.network.model.common.UrlListModel
 import cn.imrhj.cowlevel.utils.cdnImageForDPSquare
 import com.bumptech.glide.Glide
@@ -39,7 +40,11 @@ class GameStoreProvider : BaseItemProvider<UrlListModel, BaseViewHolder>() {
                 priceView.visibility = View.VISIBLE
                 priceView.text = "¥ ${it?.data?.cnyPrice}"
             }
-            itemView.setOnClickListener { }
+            itemView.setOnClickListener { _ ->
+                if (it?.url?.length ?: 0 > 0) {
+                    SchemeUtils.openWithChromeTabs(it?.url!!)
+                }
+            }
             parent.addView(itemView)
         }
 

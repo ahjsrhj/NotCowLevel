@@ -16,7 +16,9 @@ import cn.imrhj.cowlevel.network.manager.HtmlParseManager
 import cn.imrhj.cowlevel.network.model.BaseModel
 import cn.imrhj.cowlevel.network.model.common.UrlListModel
 import cn.imrhj.cowlevel.network.model.game.GameHomeModel
+import cn.imrhj.cowlevel.network.model.game.PublishContributorsModel
 import cn.imrhj.cowlevel.ui.activity.GameActivity.Companion.KEY_URL_SLUG
+import cn.imrhj.cowlevel.ui.adapter.provider.game.GameContributorProvider
 import cn.imrhj.cowlevel.ui.adapter.provider.game.GameHeaderProvider
 import cn.imrhj.cowlevel.ui.adapter.provider.game.GameImageProvider
 import cn.imrhj.cowlevel.ui.adapter.provider.game.GameStoreProvider
@@ -116,6 +118,14 @@ class GameActivity : BaseActivity() {
                         }
                         mAdapter.addData(urlModel)
                     }
+                    val gameContributors = it?.gameContributors
+                    val publisherList = it?.game?.publisherList
+                    val developerList = it?.game?.developerList
+                    if (gameContributors?.size ?: 0 > 0 || publisherList?.size ?: 0 > 0
+                            || developerList?.size ?: 0 > 0) {
+                        mAdapter.addData(PublishContributorsModel(publisherList, developerList,
+                                gameContributors))
+                    }
                 }, {
                     XLog.b().st(3).e("GameActivity getGameInfo:$it")
 
@@ -139,6 +149,7 @@ class GameActivity : BaseActivity() {
             mProviderDelegate.registerProvider(GameHeaderProvider())
             mProviderDelegate.registerProvider(GameImageProvider())
             mProviderDelegate.registerProvider(GameStoreProvider())
+            mProviderDelegate.registerProvider(GameContributorProvider())
 
         }
     }

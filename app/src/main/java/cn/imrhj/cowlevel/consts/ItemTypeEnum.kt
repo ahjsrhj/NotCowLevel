@@ -10,7 +10,8 @@ enum class ItemTypeEnum {
     TYPE_BANNER,
     TYPE_GAME_HEADER,
     TYPE_GAME_IMAGE,
-    TYPE_URLS
+    TYPE_URLS,
+    TYPE_CONTRIBUTORS
     ;
 
     companion object {

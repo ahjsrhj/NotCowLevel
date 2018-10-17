@@ -47,6 +47,5 @@ class GameStoreProvider : BaseItemProvider<UrlListModel, BaseViewHolder>() {
             }
             parent.addView(itemView)
         }
-
     }
 }

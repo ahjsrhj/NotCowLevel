@@ -150,7 +150,6 @@ class GameActivity : BaseActivity() {
             mProviderDelegate.registerProvider(GameImageProvider())
             mProviderDelegate.registerProvider(GameStoreProvider())
             mProviderDelegate.registerProvider(GameContributorProvider())
-
         }
     }
 }

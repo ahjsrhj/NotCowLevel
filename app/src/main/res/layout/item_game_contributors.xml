@@ -52,4 +52,34 @@
         app:layout_constraintStart_toEndOf="@+id/unused_id_2"
         app:layout_constraintTop_toTopOf="@+id/unused_id_2" />
 
+    <TextView
+        android:id="@+id/unused_id_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="条目贡献者:"
+        android:textColor="@color/colorWhite5"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/unused_id_2" />
+
+    <HorizontalScrollView
+        android:id="@+id/unused_id_4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/unused_id_3">
+
+        <LinearLayout
+            android:id="@+id/ll_avatar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" />
+    </HorizontalScrollView>
+
 </android.support.constraint.ConstraintLayout>

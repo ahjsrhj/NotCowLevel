@@ -1,6 +1,7 @@
 package cn.imrhj.cowlevel.extensions
 
 import android.arch.lifecycle.LifecycleOwner
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.support.annotation.ColorRes
@@ -87,4 +88,8 @@ fun <T> Observable<T>.bindLifecycleOnMainThread(lifecycle: LifecycleOwner): Obse
 
 fun <T> Observable<T>.bindLifecycle(lifecycle: LifecycleOwner): ObservableSubscribeProxy<T> {
     return this.`as`(AutoDispose.autoDisposable<T>(AndroidLifecycleScopeProvider.from(lifecycle)))
+}
+
+fun Context.gotColor(@ColorRes id: Int): Int {
+    return ContextCompat.getColor(this, id)
 }

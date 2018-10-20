@@ -29,6 +29,7 @@ import com.elvishew.xlog.XLog
 import kotlinx.android.synthetic.main.activity_game.*
 
 
+
 @AppDeepLink("/game/{$KEY_URL_SLUG}")
 @WebDeepLink("/game/{$KEY_URL_SLUG}")
 class GameActivity : BaseActivity() {

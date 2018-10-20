@@ -34,7 +34,6 @@ object HtmlParseManager {
                 .flatMap { OkHttpManager.getServerData(it) }
                 .doOnError {
                     XLog.b().st(3).e("HtmlParseManager getJSData doOnError :$it")
-                    XLog.e("doOnError:$it")
                     if (it is AuthException) {
                         Observable.just(1)
                                 .subscribeOn(AndroidSchedulers.mainThread())

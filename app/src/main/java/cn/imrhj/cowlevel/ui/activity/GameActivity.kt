@@ -8,14 +8,11 @@ import cn.imrhj.cowlevel.R
 import cn.imrhj.cowlevel.consts.ItemTypeEnum
 import cn.imrhj.cowlevel.deeplink.AppDeepLink
 import cn.imrhj.cowlevel.deeplink.WebDeepLink
-import cn.imrhj.cowlevel.extensions.addNullableData
-import cn.imrhj.cowlevel.extensions.bindLifecycle
 import cn.imrhj.cowlevel.extensions.bindLifecycleOnMainThread
 import cn.imrhj.cowlevel.manager.SchemeUtils
 import cn.imrhj.cowlevel.network.manager.HtmlParseManager
 import cn.imrhj.cowlevel.network.model.BaseModel
 import cn.imrhj.cowlevel.network.model.common.UrlListModel
-import cn.imrhj.cowlevel.network.model.game.GameHomeModel
 import cn.imrhj.cowlevel.network.model.game.PublishContributorsModel
 import cn.imrhj.cowlevel.ui.activity.GameActivity.Companion.KEY_URL_SLUG
 import cn.imrhj.cowlevel.ui.adapter.provider.game.GameContributorProvider
@@ -29,10 +26,6 @@ import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.BaseViewHolder
 import com.chad.library.adapter.base.MultipleItemRvAdapter
 import com.elvishew.xlog.XLog
-import com.uber.autodispose.AutoDispose
-import com.uber.autodispose.AutoDispose.autoDisposable
-import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider
-import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_game.*
 
 

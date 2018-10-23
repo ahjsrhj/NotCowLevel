@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/colorPrimary"
@@ -141,7 +142,6 @@
         android:text="Windows / PS4"
         android:textColor="@color/white"
         android:textSize="12sp"
-        app:layout_constraintBottom_toTopOf="@+id/static_5"
         app:layout_constraintEnd_toStartOf="@+id/view_division"
         app:layout_constraintStart_toEndOf="@+id/static_4"
         app:layout_constraintTop_toTopOf="@+id/static_4" />
@@ -155,7 +155,7 @@
         android:textColor="@color/colorWhite5"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/static_4" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_platform" />
 
     <TextView
         android:id="@+id/tv_language"
@@ -164,7 +164,6 @@
         android:text="中文"
         android:textColor="@color/white"
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/static_5"
         app:layout_constraintStart_toEndOf="@+id/static_5"
         app:layout_constraintTop_toTopOf="@+id/static_5" />
 
@@ -177,7 +176,7 @@
         android:textColor="@color/colorWhite5"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/static_5" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_language" />
 
     <TextView
         android:id="@+id/tv_number_network"
@@ -188,7 +187,6 @@
         android:text=" 单人 / 共有/分屏 / 本地联机"
         android:textColor="@color/white"
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/static_6"
         app:layout_constraintEnd_toStartOf="@+id/view_division"
         app:layout_constraintStart_toEndOf="@+id/static_6"
         app:layout_constraintTop_toTopOf="@+id/static_6" />

@@ -11,7 +11,8 @@ enum class ItemTypeEnum {
     TYPE_GAME_HEADER,
     TYPE_GAME_IMAGE,
     TYPE_URLS,
-    TYPE_CONTRIBUTORS
+    TYPE_CONTRIBUTORS,
+    TYPE_GAME_CONTENT
     ;
 
     companion object {

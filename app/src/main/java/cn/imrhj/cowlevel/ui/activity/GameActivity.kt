@@ -13,12 +13,10 @@ import cn.imrhj.cowlevel.manager.SchemeUtils
 import cn.imrhj.cowlevel.network.manager.HtmlParseManager
 import cn.imrhj.cowlevel.network.model.BaseModel
 import cn.imrhj.cowlevel.network.model.common.UrlListModel
+import cn.imrhj.cowlevel.network.model.game.ContentModel
 import cn.imrhj.cowlevel.network.model.game.PublishContributorsModel
 import cn.imrhj.cowlevel.ui.activity.GameActivity.Companion.KEY_URL_SLUG
-import cn.imrhj.cowlevel.ui.adapter.provider.game.GameContributorProvider
-import cn.imrhj.cowlevel.ui.adapter.provider.game.GameHeaderProvider
-import cn.imrhj.cowlevel.ui.adapter.provider.game.GameImageProvider
-import cn.imrhj.cowlevel.ui.adapter.provider.game.GameStoreProvider
+import cn.imrhj.cowlevel.ui.adapter.provider.game.*
 import cn.imrhj.cowlevel.ui.base.BaseActivity
 import cn.imrhj.cowlevel.ui.view.recycler.TextLoadMoreView
 import cn.imrhj.cowlevel.utils.cdnImageForFullWidthAndDPHeight
@@ -119,9 +117,12 @@ class GameActivity : BaseActivity() {
                         mAdapter.addData(PublishContributorsModel(publisherList, developerList,
                                 gameContributors))
                     }
+
+                    if (it.game?.content != null) {
+                        mAdapter.addData(ContentModel(it.game?.content!!))
+                    }
                 }, {
                     XLog.b().st(3).e("GameActivity getGameInfo:$it")
-
                 })
     }
 
@@ -143,6 +144,7 @@ class GameActivity : BaseActivity() {
             mProviderDelegate.registerProvider(GameImageProvider())
             mProviderDelegate.registerProvider(GameStoreProvider())
             mProviderDelegate.registerProvider(GameContributorProvider())
+            mProviderDelegate.registerProvider(GameContentProvider())
         }
     }
 }

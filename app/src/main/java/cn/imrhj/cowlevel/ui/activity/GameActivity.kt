@@ -50,7 +50,6 @@ class GameActivity : BaseActivity() {
     private var mCover = ""
     private val mAdapter by lazy { GameAdapter() }
 
-
     override fun layoutId(): Int? {
         return R.layout.activity_game
     }

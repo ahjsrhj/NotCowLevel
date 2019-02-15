@@ -9,6 +9,7 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import cn.imrhj.cowlevel.R
 import cn.imrhj.cowlevel.deeplink.AppDeepLinkModuleLoader
+import cn.imrhj.cowlevel.extensions.bindLifecycleOnMainThread
 import cn.imrhj.cowlevel.manager.SchemeUtils
 import cn.imrhj.cowlevel.manager.UserManager
 import cn.imrhj.cowlevel.network.manager.RetrofitManager
@@ -84,6 +85,7 @@ class LoginActivity : BaseActivity() {
             btnLogin.startAnimation()
             RetrofitManager.getInstance().login(etMail.text.toString(), etPassword.text.toString())
                     .observeOn(AndroidSchedulers.mainThread())
+                    .bindLifecycleOnMainThread(this)
                     .subscribe({ loginModel ->
                         if (StringUtils.isNotBlank(loginModel.authToken)) {
                             btnLogin.doneLoadingAnimation(0x86A697,

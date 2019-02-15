@@ -67,7 +67,6 @@ android {
 
 }
 
-// 关于 AndroidX 目前迁移到 AndroidX DeepLink 生成的类报错，等待官方修复后迁移，issues:https://github.com/airbnb/DeepLinkDispatch/issues/222
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin}"
     implementation "androidx.appcompat:appcompat:1.0.2"

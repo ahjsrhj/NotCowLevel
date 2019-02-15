@@ -3,7 +3,7 @@ package cn.imrhj.cowlevel.ui.adapter.provider.game
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import android.util.Pair
 import android.view.View
 import android.widget.ImageView

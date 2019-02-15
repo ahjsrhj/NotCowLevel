@@ -1,10 +1,10 @@
 package cn.imrhj.cowlevel.ui.fragment.element
 
-import android.support.design.widget.BottomSheetBehavior
-import android.support.design.widget.BottomSheetDialog
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.Toolbar
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.appcompat.widget.Toolbar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -128,7 +128,7 @@ class ElementFeedFragment : RecyclerFragment<BaseModel>() {
         mDialog.setContentView(content)
         mDialog.setCancelable(true)
         mDialog.setCanceledOnTouchOutside(true)
-        val parent = mDialog.window?.findViewById<ViewGroup>(android.support.design.R.id.design_bottom_sheet)
+        val parent = mDialog.window?.findViewById<ViewGroup>(com.google.android.material.R.id.design_bottom_sheet)
         parent?.layoutParams?.height = ViewGroup.LayoutParams.MATCH_PARENT
         parent?.setBackgroundColor(getColor(R.color.colorPrimaryDark))
 

@@ -1,9 +1,9 @@
 package cn.imrhj.cowlevel.ui.activity
 
-import android.support.design.widget.AppBarLayout
-import android.support.v4.content.res.ResourcesCompat
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
+import com.google.android.material.appbar.AppBarLayout
+import androidx.core.content.res.ResourcesCompat
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.View
 import android.view.ViewAnimationUtils
 import cn.imrhj.cowlevel.R

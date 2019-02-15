@@ -1,6 +1,6 @@
 package cn.imrhj.cowlevel.ui.base
 
-import android.support.annotation.LayoutRes
+import androidx.annotation.LayoutRes
 import cn.imrhj.cowlevel.extensions.bindLifecycle
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder

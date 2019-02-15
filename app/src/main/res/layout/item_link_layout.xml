@@ -30,7 +30,7 @@
             android:textSize="14sp"
             android:textStyle="bold" />
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:id="@+id/link_card"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
                 android:background="@color/colorTipsGrey"
                 android:scaleType="centerCrop" />
 
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
     </LinearLayout>
 

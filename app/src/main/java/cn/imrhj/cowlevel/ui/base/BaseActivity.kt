@@ -1,8 +1,8 @@
 package cn.imrhj.cowlevel.ui.base
 
 import android.os.Bundle
-import android.support.annotation.LayoutRes
-import android.support.v7.app.AppCompatActivity
+import androidx.annotation.LayoutRes
+import androidx.appcompat.app.AppCompatActivity
 import android.transition.Transition
 import com.airbnb.deeplinkdispatch.DeepLink
 import io.reactivex.Observer

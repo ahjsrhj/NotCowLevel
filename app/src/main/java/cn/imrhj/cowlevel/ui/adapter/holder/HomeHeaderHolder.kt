@@ -1,8 +1,8 @@
 package cn.imrhj.cowlevel.ui.adapter.holder
 
 import android.app.Activity
-import android.support.annotation.LayoutRes
-import android.support.v4.app.Fragment
+import androidx.annotation.LayoutRes
+import androidx.fragment.app.Fragment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View

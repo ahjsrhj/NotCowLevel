@@ -2,7 +2,7 @@ package cn.imrhj.cowlevel.ui.activity
 
 import android.content.Context
 import android.content.Intent
-import android.support.design.widget.Snackbar
+import com.google.android.material.snackbar.Snackbar
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.inputmethod.EditorInfo

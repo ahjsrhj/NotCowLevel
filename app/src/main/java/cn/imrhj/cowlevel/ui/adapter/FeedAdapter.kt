@@ -1,6 +1,6 @@
 package cn.imrhj.cowlevel.ui.adapter
 
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import cn.imrhj.cowlevel.R
 import cn.imrhj.cowlevel.consts.ItemTypeEnum
 import cn.imrhj.cowlevel.consts.ItemTypeEnum.TYPE_FEED

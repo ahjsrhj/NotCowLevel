@@ -1,12 +1,12 @@
 package cn.imrhj.cowlevel.extensions
 
-import android.arch.lifecycle.LifecycleOwner
+import androidx.lifecycle.LifecycleOwner
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
-import android.support.annotation.ColorRes
-import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat
+import androidx.annotation.ColorRes
+import androidx.fragment.app.Fragment
+import androidx.core.content.ContextCompat
 import android.text.Html
 import android.text.Spanned
 import android.view.View

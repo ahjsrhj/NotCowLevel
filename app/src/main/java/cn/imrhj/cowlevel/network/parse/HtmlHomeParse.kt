@@ -35,7 +35,7 @@ val parseHomeJSString: (String) -> FeedHomeModel = {
     val tagList = getJsonListModel<FollowedTagNewModel>(Regex("followed_tag_new: (.+),").find(it))
     data.followedTagNews = if (tagList != null) FollowedTagNewListModel(tagList) else null
     val bannerList = getJsonListModel<BannerModel>(Regex("banners:(.+),").find(it))
-    data.banners = if (bannerList != null) BannerListModel(bannerList) else null
+    data.banners = if (bannerList != null && bannerList.any { banner -> banner.smallPic?.length ?: 0 > 0 }) BannerListModel(bannerList) else null   // smallPic is need
     data
 }
 

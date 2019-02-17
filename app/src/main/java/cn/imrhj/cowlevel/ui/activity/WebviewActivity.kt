@@ -47,7 +47,12 @@ class WebviewActivity : BaseActivity() {
                     view: WebView?,
                     request: WebResourceRequest?): Boolean {
                 if (COW_LEVEL_URI?.host() == request?.url?.host) {
-                    return super.shouldOverrideUrlLoading(view, request)
+                    if (SchemeUtils.supportsUri(request?.url)) {
+                        SchemeUtils.openLink(request?.url)
+                        return true
+                    } else {
+                        return super.shouldOverrideUrlLoading(view, request)
+                    }
                 }
                 if (request?.url != null) {
                     SchemeUtils.openWithChromeTabs(request.url)

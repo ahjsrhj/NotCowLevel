@@ -21,9 +21,10 @@ import cn.imrhj.cowlevel.utils.StringUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_login.*
 
+val INVITE_URL: String = "https://cowlevel.net/reg"
+val FORGOT_URL: String = "https://cowlevel.net/forgot"
+
 class LoginActivity : BaseActivity() {
-    private val INVITE_URL = "https://cowlevel.net/reg"
-    private val FORGOT_URL = "https://cowlevel.net/forgot"
 //    private var isRegister = true
 
     override fun layoutId(): Int {
@@ -94,8 +95,7 @@ class LoginActivity : BaseActivity() {
                             UserManager.setToken(loginModel.authToken!!)
                             btnLogin.postDelayed({
                                 if (intent.data != null) {
-                                    val deepLinkDelegate = DeepLinkDelegate(AppDeepLinkModuleLoader())
-                                    deepLinkDelegate.dispatchFrom(this)
+                                    SchemeUtils.openLink(intent.data?.toString()!!)
                                 } else {
                                     startActivity(Intent(this, MainActivity::class.java))
                                 }

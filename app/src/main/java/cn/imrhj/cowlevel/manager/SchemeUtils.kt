@@ -21,16 +21,32 @@ import cn.imrhj.cowlevel.utils.ResourcesUtils
 class SchemeUtils {
     companion object {
         private val mDeepLinkDelegate = DeepLinkDelegate(AppDeepLinkModuleLoader())
+        fun supportsUri(url: Uri?): Boolean {
+            return supportsUri(url.toString())
+        }
+
+        fun supportsUri(url: String?): Boolean {
+            return mDeepLinkDelegate.supportsUri(url)
+        }
+
+        fun openLink(url: Uri?) {
+            openLink(url.toString())
+        }
+
         fun openLink(url: String) {
-            if (mDeepLinkDelegate.supportsUri(url)) {
+            if (supportsUri(url)) {
                 val intent = Intent()
                 intent.data = Uri.parse(url)
                 mDeepLinkDelegate.dispatchFrom(App.app.getLastActivity(), intent)
             } else {
-                val intent = Intent(App.app.getLastActivity(), WebviewActivity::class.java)
-                intent.putExtra("url", url)
-                App.app.getLastActivity().startActivity(intent)
+                openWebview(url)
             }
+        }
+
+        fun openWebview(url: String?) {
+            val intent = Intent(App.app.getLastActivity(), WebviewActivity::class.java)
+            intent.putExtra("url", url)
+            App.app.getLastActivity().startActivity(intent)
         }
 
         /**
@@ -54,7 +70,7 @@ class SchemeUtils {
             tabsIntent.intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
 
 
-            tabsIntent.launchUrl(App.app, uri)
+            tabsIntent.launchUrl(App.app.getLastActivity(), uri)
         }
 
         fun <T> startActivity(clazz: Class<T>, bundle: Bundle? = null) {

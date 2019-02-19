@@ -6,6 +6,7 @@ import android.os.Bundle
 import cn.imrhj.cowlevel.log.AppRecoveryCallback
 import cn.imrhj.cowlevel.log.NewLineBorderFormatter
 import cn.imrhj.cowlevel.ui.activity.MainActivity
+import cn.imrhj.cowlevel.ui.view.loader.PreviewImageLoader
 import cn.imrhj.cowlevel.utils.CacheUtils
 import com.elvishew.xlog.LogConfiguration
 import com.elvishew.xlog.LogLevel
@@ -14,6 +15,7 @@ import com.elvishew.xlog.printer.AndroidPrinter
 import com.elvishew.xlog.printer.file.FilePrinter
 import com.elvishew.xlog.printer.file.backup.NeverBackupStrategy
 import com.elvishew.xlog.printer.file.naming.DateFileNameGenerator
+import com.previewlibrary.ZoomMediaLoader
 import com.zxy.recovery.core.Recovery
 import io.reactivex.disposables.CompositeDisposable
 import java.lang.ref.WeakReference
@@ -57,6 +59,9 @@ class App : Application(), Application.ActivityLifecycleCallbacks {
                 .recoverEnabled(true)
                 .callback(AppRecoveryCallback())
                 .init(this)
+
+        ZoomMediaLoader.getInstance().init(PreviewImageLoader())
+
     }
 
     fun getLastActivity(): Activity {

@@ -7,6 +7,7 @@ import android.widget.LinearLayout
 import cn.imrhj.cowlevel.App
 import cn.imrhj.cowlevel.R
 import cn.imrhj.cowlevel.consts.ItemTypeEnum
+import cn.imrhj.cowlevel.extensions.clicks
 import cn.imrhj.cowlevel.network.model.game.FeatureImageListModel
 import cn.imrhj.cowlevel.ui.view.model.PreviewImageModel
 import cn.imrhj.cowlevel.utils.ScreenSizeUtil.dp2px
@@ -15,6 +16,9 @@ import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.BaseViewHolder
 import com.chad.library.adapter.base.provider.BaseItemProvider
 import com.previewlibrary.GPreviewBuilder
+import io.reactivex.Observable
+import io.reactivex.schedulers.Schedulers
+import java.util.concurrent.TimeUnit
 
 class GameImageProvider : BaseItemProvider<FeatureImageListModel, BaseViewHolder>() {
     override fun layout(): Int {
@@ -36,22 +40,24 @@ class GameImageProvider : BaseItemProvider<FeatureImageListModel, BaseViewHolder
                     .into(image)
             val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, height)
             params.marginEnd = dp2px(8)
-            image.tag = index
-            image.setOnClickListener {
-                val previewModelList = mutableListOf<PreviewImageModel>()
-                data.list.forEachIndexed { innerIndex, innerModel ->
-                    val innerImage = parent.findViewWithTag<ImageView>(innerIndex)
-                    val bounds = Rect()
-                    innerImage.getGlobalVisibleRect(bounds)
-                    previewModelList.add(innerIndex, PreviewImageModel(innerModel.pic, null, bounds))
-                }
+            image.clicks()
+                    .throttleFirst(300, TimeUnit.MILLISECONDS)
+                    .subscribe {
+                        val previewModelList = mutableListOf<PreviewImageModel>()
+                        data.list.forEachIndexed { innerIndex, innerModel ->
+                            val innerImage = parent.getChildAt(innerIndex)
+                            val bounds = Rect()
+                            innerImage.getGlobalVisibleRect(bounds)
+                            previewModelList.add(innerIndex, PreviewImageModel(innerModel.pic, null, bounds))
+                        }
 
-                GPreviewBuilder.from(App.app.getLastActivity())
-                        .setCurrentIndex(index)
-                        .setData(previewModelList)
-                        .setType(GPreviewBuilder.IndicatorType.Number)
-                        .start()
-            }
+                        GPreviewBuilder.from(App.app.getLastActivity())
+                                .setCurrentIndex(index)
+                                .setData(previewModelList)
+                                .setType(GPreviewBuilder.IndicatorType.Number)
+                                .start()
+
+                    }
             parent.addView(image, params)
         }
         val moreView = LayoutInflater.from(parent.context).inflate(R.layout.item_image_more, parent, false)

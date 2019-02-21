@@ -4,6 +4,7 @@ import androidx.lifecycle.LifecycleOwner
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
+import android.os.Looper
 import androidx.annotation.ColorRes
 import androidx.fragment.app.Fragment
 import androidx.core.content.ContextCompat
@@ -20,9 +21,13 @@ import com.chad.library.adapter.base.BaseViewHolder
 import com.uber.autodispose.AutoDispose
 import com.uber.autodispose.ObservableSubscribeProxy
 import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider
-import io.reactivex.Observable
+import io.reactivex.*
+import io.reactivex.android.MainThreadDisposable
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposables
+import io.reactivex.schedulers.Schedulers
 import okhttp3.Request
+import java.util.concurrent.TimeUnit
 
 /**
  * 函数扩展中心
@@ -92,4 +97,42 @@ fun <T> Observable<T>.bindLifecycle(lifecycle: LifecycleOwner): ObservableSubscr
 
 fun Context.gotColor(@ColorRes id: Int): Int {
     return ContextCompat.getColor(this, id)
+}
+
+fun View.clicks(): Observable<Unit> {
+    return ViewClickObservable(this)
+}
+
+private fun checkMainThread(observer: Observer<*>): Boolean {
+    if (Looper.myLooper() != Looper.getMainLooper()) {
+        observer.onSubscribe(Disposables.empty())
+        observer.onError(IllegalStateException(
+                "Expected to be called on the main thread but was " + Thread.currentThread().name))
+        return false
+    }
+    return true
+}
+
+private class ViewClickObservable(private val view: View) : Observable<Unit>() {
+    override fun subscribeActual(observer: Observer<in Unit>) {
+        if (!checkMainThread(observer)) {
+            return
+        }
+        val listener = Listener(view, observer)
+        observer.onSubscribe(listener)
+        view.setOnClickListener(listener)
+    }
+
+    private class Listener(private val view: View, private val observer: Observer<in Unit>)
+        : MainThreadDisposable(), View.OnClickListener {
+        override fun onClick(v: View) {
+            if (!isDisposed) {
+                observer.onNext(Unit)
+            }
+        }
+
+        override fun onDispose() {
+            view.setOnClickListener(null)
+        }
+    }
 }

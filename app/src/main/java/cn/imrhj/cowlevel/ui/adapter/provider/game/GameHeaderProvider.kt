@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
@@ -14,6 +15,7 @@ import cn.imrhj.cowlevel.network.model.game.GameModel
 import cn.imrhj.cowlevel.ui.view.SimpleGameTagView
 import cn.imrhj.cowlevel.utils.ScreenSizeUtil
 import cn.imrhj.cowlevel.utils.ScreenSizeUtil.dp2px
+import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.BaseViewHolder
 import com.chad.library.adapter.base.provider.BaseItemProvider
 
@@ -60,7 +62,38 @@ class GameHeaderProvider : BaseItemProvider<GameModel, BaseViewHolder>() {
                 textView.text = spannableString
                 textView.textSize = 14f
                 textView.setTextColor(ContextCompat.getColor(ranksLayout.context, R.color.colorGreyText))
-                ranksLayout.addView(textView)
+                val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+                params.bottomMargin = ScreenSizeUtil.dp2px(5)
+                ranksLayout.addView(textView, params)
+            }
+        }
+
+        if (data.youFollowedPlayedInfo != null) {
+            val textView = TextView(ranksLayout.context)
+            val info = data.youFollowedPlayedInfo
+            val totalLength = "${info.total}".length
+            val timeLength = "${info.playTimeAvg}".length
+            val scoreLength = "${info.starAvg}".length
+            val spannableString = SpannableStringBuilder("你关注的 ${info.total} 人玩过 平均玩过  ${info.playTimeAvg}h  ${info.starAvg}分")
+            spannableString.setSpan(ForegroundColorSpan(Color.WHITE), 5, 5 + totalLength, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            spannableString.setSpan(ForegroundColorSpan(ContextCompat.getColor(textView.context, R.color.colorTimeBlue)),
+                    totalLength + 16, totalLength + 17 + timeLength, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            spannableString.setSpan(ForegroundColorSpan(ContextCompat.getColor(textView.context, R.color.colorScoreYellow)),
+                    totalLength + 19 + timeLength, totalLength + 20 + timeLength + scoreLength, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            textView.text = spannableString
+            textView.textSize = 14f
+            textView.setTextColor(ContextCompat.getColor(ranksLayout.context, R.color.colorGreyText))
+            val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+            params.bottomMargin = ScreenSizeUtil.dp2px(5)
+            ranksLayout.addView(textView, params)
+
+            if (data.youFollowedPlayedInfo.users != null) {
+                val avatarLayout = LinearLayout(ranksLayout.context)
+                data.youFollowedPlayedInfo.users.forEach {
+                    val avatarImage = ImageView(avatarLayout.context)
+//                    Glide.with(avatarImage)
+//                            .load(cdnImageFor)
+                }
             }
         }
 

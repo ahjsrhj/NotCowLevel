@@ -11,7 +11,7 @@ data class YouFollowedPlayedInfo(
         val total: Int? = null,
 
         @field:SerializedName("star_avg")
-        val starAvg: Int? = null,
+        val starAvg: String? = null,
 
         @field:SerializedName("users")
         val users: List<Any?>? = null

@@ -7,7 +7,6 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import android.view.Menu
 import android.view.MenuItem
 import cn.imrhj.cowlevel.R
-import cn.imrhj.cowlevel.extensions.bindLifecycle
 import cn.imrhj.cowlevel.extensions.bindLifecycleOnMainThread
 import cn.imrhj.cowlevel.network.manager.RetrofitManager
 import cn.imrhj.cowlevel.ui.adapter.FragmentAdapter
@@ -15,7 +14,6 @@ import cn.imrhj.cowlevel.ui.base.BaseActivity
 import cn.imrhj.cowlevel.ui.fragment.HomeFeedFragment
 import cn.imrhj.cowlevel.ui.fragment.HotFeedFragment
 import com.elvishew.xlog.XLog
-import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
